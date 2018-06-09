@@ -1,13 +1,14 @@
-function ATKup() {
+function up() {
     console.log('button up', arguments);
 }
-function ATKover() {
+function over() {
     console.log('button over');
 }
-function ATKout() {
+function out() {
     console.log('button out');
 }
 function ATKClick() {
-
-
+}
+function ITMClick() {
+    
 }

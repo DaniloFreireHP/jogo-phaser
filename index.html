@@ -6,9 +6,9 @@
     <title>KillProtocol - A Cyberpunk RPG
     </title>
     <script src="phaser-ce/build/phaser.js"></script>
-    <script src="javascript/buttons.js"></script>        
-    
-    <style type="text/css"> 
+    <script src="javascript/CombatMenu.js"></script>
+
+    <style type="text/css">
         body {
             margin: 0;
         }
@@ -20,35 +20,34 @@
     <script type="text/javascript">
 
         var game = new Phaser.Game(
-            1200,
+            800,
             600,
             Phaser.CANVAS,
             'phaser-example',
             { preload: preload, create: create, update: update, render: render });
+        var CombatMenu;
         var floor;
-        var btnAtk;
+        var player;
         var game = new Phaser.Game(config);
         function preload() {
-            game.load.image("floor", "/assets/floor.png");
+            game.load.image("floor", "assets/floor.png");
+            game.load.image("CombatMenu", "assets/combatmenu.png");
             game.load.spritesheet("btnAtk", "assets/BtnAtk.png", 40, 20, 3);
+            game.load.spritesheet("btnItm", "assets/BtnItm.png", 40, 20, 3);
+            game.load.image("Guy", "assets/Guy.png");
             // game.load.sprite()   
         }
 
         function create() {
             floor = game.add.sprite(0, 0, "floor");
-            btnAtk = game.add.button(600, 300, "btnAtk", ATKClick, this, 0,1,2);
-            button.onInputOut.add(ATKout, this);
-            button.onInputOver.add(ATKover, this);
-            button.onInputUp.add(ATKup, this);
+            CombatMenu("CombatMenu", "btnAtk", "btnItm",100,100);
+            player = game.add.sprite(0, 0, "Guy");
+
         }
 
         function update() {
-
         }
         function render() {
-            // game.debug.text("Left Button: " + game.input.activePointer.leftButton.isDown, 300, 132);
-            // game.debug.text("Middle Button: " + game.input.activePointer.middleButton.isDown, 300, 196);
-            // game.debug.text("Right Button: " + game.input.activePointer.rightButton.isDown, 300, 260);
         }
 
     </script>
