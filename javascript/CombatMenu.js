@@ -2,6 +2,9 @@ function CombatMenu(CombatMenuImg,btnAtkImg,btnItmImg,menuPosWidth, menuPosHeigh
     var CombatMenu = game.add.image(menuPosWidth, menuPosHeight, CombatMenuImg)
     var btnAtk = game.add.button(menuPosWidth + 18, menuPosHeight + 28, btnAtkImg, ATKClick, this, 1, 0, 2);
     var btnItm = game.add.button(menuPosWidth + 63, menuPosHeight + 28, btnItmImg, ITMClick, this, 1, 0, 2);
+    CombatMenu.scale.setTo(1.3334,1.3334);
+    btnAtk.scale.setTo(1.3334,1.3334);
+    btnItm.scale.setTo(1.3334,1.3334);
     CombatMenu.fixedToCamera = true;
     btnAtk.fixedToCamera = true;
     btnItm.fixedToCamera = true;
