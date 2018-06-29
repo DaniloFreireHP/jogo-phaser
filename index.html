@@ -7,16 +7,19 @@
     </title>
     <script src="phaser-ce/build/phaser.js"></script>
     <script src="javascript/CombatMenu.js"></script>
+    <script src="javascript/CharMovement.js"></script>
 
     <style type="text/css">
         html,
         body {
             height: 100%;
         }
+
         html {
             display: table;
             margin: auto;
         }
+
         body {
             display: table-cell;
             vertical-align: middle;
@@ -33,10 +36,11 @@
             Phaser.CANVAS,
             'phaser-example',
             { preload: preload, create: create, update: update, render: render });
-        var CombatMenu;
+
         var floor;
         var map;
         var player;
+        var gm;
         var game = new Phaser.Game(config);
         function preload() {
             // game.load.image('floor', 'assets/floor.png');
@@ -45,38 +49,36 @@
             game.load.spritesheet('btnAtk', 'assets/BtnAtk.png', 40, 20, 3);
             game.load.spritesheet('btnItm', 'assets/BtnItm.png', 40, 20, 3);
             game.load.image('Guy', 'assets/Guy.png');
+            game.load.image('gm','assets/GroundMarker.png');
         }
 
         function create() {
             // floor = game.add.image(0, 0, 'floor');
             map = game.add.image(0, 0, 'map');
-            game.world.setBounds(0, 0, 6300, 5625);
-            game.world.scale.setTo(0.75,0.75);
+            game.world.setBounds(0, 0, 1600, 1200); // Tamanho original X:6300 Y:5625
+            game.world.scale.setTo(0.75, 0.75);
             game.physics.startSystem(Phaser.Physics.P2JS);
+            gm = game.add.image(200,200,'gm');
             player = game.add.sprite(200, 200, 'Guy');
             game.physics.p2.enable(player);
-            // player.scale.setTo(0.5,0.5);
+            player.scale.setTo(0.75,0.75);
+            // world.input.enableDrag = true;
             game.camera.follow(player);
+            
             CombatMenu('CombatMenu', 'btnAtk', 'btnItm', 650, 530);
         }
 
         function update() {
-            player.body.setZeroVelocity();
-            if (game.input.keyboard.isDown(Phaser.Keyboard.A)) {
-                player.body.moveLeft(300);
+            if(game.input.mouse.isDown)
+            {
+                game.physics.arcade.moveToPointer(gm,1100);
             }
-            else if (game.input.keyboard.isDown(Phaser.Keyboard.D)) {
-                player.body.moveRight(300);
-            }
-            if (game.input.keyboard.isDown(Phaser.Keyboard.W)) {
-                player.body.moveUp(300);
-            }
-            else if (game.input.keyboard.isDown(Phaser.Keyboard.S)) {
-                player.body.moveDown(300);
-            }
+
+            CharMovement(player);
         }
 
         function render() {
+            game.debug.inputInfo(32, 32);
         }
 
     </script>
