@@ -48,6 +48,7 @@
             game.load.image('CombatMenu', 'assets/combatmenu.png');
             game.load.spritesheet('btnAtk', 'assets/BtnAtk.png', 40, 20, 3);
             game.load.spritesheet('btnItm', 'assets/BtnItm.png', 40, 20, 3);
+            game.load.spritesheet('GuySheet','assets/SpriteSheet.png',114,138,56);
             game.load.image('Guy', 'assets/Guy.png');
             game.load.image('gm','assets/GroundMarker.png');
         }
@@ -58,21 +59,21 @@
             game.world.setBounds(0, 0, 1600, 1200); // Tamanho original X:6300 Y:5625
             game.world.scale.setTo(0.75, 0.75);
             game.physics.startSystem(Phaser.Physics.P2JS);
-            gm = game.add.image(200,200,'gm');
-            player = game.add.sprite(200, 200, 'Guy');
+            // gm = game.add.image(200,200,'gm');
+            player = game.add.sprite(200, 200, 'GuySheet');
             game.physics.p2.enable(player);
             player.scale.setTo(0.75,0.75);
             // world.input.enableDrag = true;
             game.camera.follow(player);
-            
+            setAnimation('GuySheet');
             CombatMenu('CombatMenu', 'btnAtk', 'btnItm', 650, 530);
         }
 
         function update() {
-            if(game.input.mouse.isDown)
-            {
-                game.physics.arcade.moveToPointer(gm,1100);
-            }
+            // if(game.input.mouse.isDown)
+            // {
+            //     game.physics.arcade.moveToPointer(gm,1100);
+            // }
 
             CharMovement(player);
         }
